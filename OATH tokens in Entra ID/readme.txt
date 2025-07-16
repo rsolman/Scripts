@@ -1,6 +1,6 @@
 Here’s a description of what each of the uploaded PowerShell scripts does:
 
-1.Captures all users with otp token.ps1 – This script queries Microsoft Graph to list all hardware OATH tokens in the tenant, both assigned and unassigned. It collects details such as serial number, hash function (e.g. SHA-1 or SHA-256), and who each token is assigned to (including the user's UPN), providing a comprehensive inventory.
+1.Get all users with otp token.ps1 – This script queries Microsoft Graph to list all hardware OATH tokens in the tenant, both assigned and unassigned. It collects details such as serial number, hash function (e.g. SHA-1 or SHA-256), and who each token is assigned to (including the user's UPN), providing a comprehensive inventory.
 
 2. Import hardwareOathTokens_EntraID_SHA-1 (AssignedToUPN's).ps1 – This script imports hardware OATH tokens with SHA-1 (HMACSHA1) hashing, where each token is assigned to a specific user based on the UPN provided in the CSV file. It enables the hardware OATH policy if not already enabled, verifies if the token already exists, and then assigns it via Microsoft Graph.
 
@@ -12,4 +12,4 @@ Note: Unassigned tokens will not appear in the Multifactor Authentication > OATH
 
 Note: Unassigned tokens will not appear in the Multifactor Authentication > OATH tokens (Preview) section of Microsoft Entra admin center until they are activated by users. To view both assigned and unassigned tokens, please use the script titled "Captures all users with OTP token.ps1".
 
-5.Purge All OATH Tokens.ps1 – This script retrieves all existing hardware OATH tokens in the tenant and deletes them, regardless of assignment status. It is designed to fully purge the token inventory using the Graph API.
+5.DELETE All OATH Tokens.ps1 – This script retrieves all existing hardware OATH tokens in the tenant and deletes them, regardless of assignment status. It is designed to fully purge the token inventory using the Graph API.
