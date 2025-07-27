@@ -1,4 +1,4 @@
-Connect-MgGraph -Scopes "User.Read.All","UserAuthenticationMethod.Read.All"
+Connect-MgGraph -NoWelcome -Scopes "User.Read.All","UserAuthenticationMethod.Read.All"
 
 # Get all hardware OATH tokens
 $allTokens = Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/directory/authenticationMethodDevices/hardwareOathDevices"
