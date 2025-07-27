@@ -1,0 +1,91 @@
+<html>
+<head>
+  <title>OATH Token Manager</title>
+  <HTA:APPLICATION ID="OATHManager" APPLICATIONNAME="OATH Token Manager" BORDER="thin" BORDERSTYLE="normal" CAPTION="yes" SHOWINTASKBAR="yes" SINGLEINSTANCE="yes" SYSMENU="yes" WINDOWSTATE="normal" MAXIMIZEBUTTON="yes" MINIMIZEBUTTON="yes">
+  <meta charset="UTF-8">
+  <script language="VBScript">
+    Function RunScript(ps1)
+      Set shell = CreateObject("WScript.Shell")
+      cmd = "powershell -ExecutionPolicy Bypass -NoProfile -File """ & ps1 & """"
+      Set exec = shell.Exec(cmd)
+      output.innerHTML = ""
+      Do Until exec.StdOut.AtEndOfStream
+        output.innerHTML = output.innerHTML & "<div class='line'>" & Replace(exec.StdOut.ReadLine(), " ", "&nbsp;") & "</div>"
+      Loop
+    End Function
+
+    Sub RunSHA1()
+      header.innerHTML = "🔐 Importing SHA-1 Tokens..."
+      RunScript "Import-HardwareOathTokens_EntraID_SHA-1 (NON-AssignedToUPN's.ps1"
+    End Sub
+
+    Sub RunSHA256()
+      header.innerHTML = "🔐 Importing SHA-256 Tokens..."
+      RunScript "Import-HardwareOathTokens_EntraID_SHA256.(NON-AssignedToUPN.ps1"
+    End Sub
+
+    Sub RunGetUsers()
+      header.innerHTML = "📋 Getting all users with OTP tokens..."
+      RunScript "get all users with otp token.ps1"
+    End Sub
+
+    Sub RunDelete()
+      header.innerHTML = "🗑️ Deleting all OTP tokens..."
+      RunScript "delete all otp tokens.ps1"
+    End Sub
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f9ff;
+      color: #222;
+      padding: 40px;
+    }
+    h2 {
+      margin-bottom: 25px;
+      font-size: 22px;
+      color: #34495e;
+    }
+    button {
+      padding: 12px 20px;
+      margin: 10px 0;
+      font-size: 15px;
+      width: 320px;
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background 0.2s ease;
+    }
+    button:hover {
+      background-color: #1f618d;
+    }
+    #output {
+      margin-top: 30px;
+      padding: 15px;
+      background: #fff;
+      border: 1px solid #ccd;
+      border-radius: 8px;
+      height: 400px;
+      overflow-y: auto;
+      font-family: Consolas, monospace;
+      font-size: 13px;
+      white-space: pre-wrap;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .line {
+      padding: 2px 0;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="header">🛠️ OATH Token Management Console</h2>
+  <button onclick="RunSHA1()">🔐 Import SHA-1 Tokens</button><br>
+  <button onclick="RunSHA256()">🔐 Import SHA-256 Tokens</button><br>
+  <button onclick="RunGetUsers()">📋 Get All Users with OTP Tokens</button><br>
+  <button onclick="RunDelete()">🗑️ Delete All OTP Tokens</button><br>
+  <div id="output"></div>
+</body>
+</html>
