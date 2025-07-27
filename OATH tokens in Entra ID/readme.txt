@@ -12,6 +12,6 @@ Note: Unassigned tokens will not appear in the Multifactor Authentication > OATH
 
 Note: Unassigned tokens will not appear in the Multifactor Authentication > OATH tokens (Preview) section of Microsoft Entra admin center until they are activated by users. To view both assigned and unassigned tokens, please use the script titled "Captures all users with OTP token.ps1".
 
-5.DELETE All OATH Tokens.ps1 – This script retrieves all existing hardware OATH tokens in the tenant and deletes them, regardless of assignment status. It is designed to fully purge the Unassigned tokens from inventory using the Graph API. (Make sure all your tokens are unassigned)
+5.DELETE All OATH Tokens.ps1 – This script retrieves all existing hardware OATH tokens in the tenant and deletes them, regardless of assignment status. It is designed to fully purge the Unassigned tokens from inventory using the Graph API. (Make sure all your tokens are unassigned) NOTE: Wait for upto 30 min before deleting unassigned tokens after importing them.
 
 6. OATHManager_DirectExec.hta -  a local Windows-based HTA tool that connects to Microsoft Graph to manage OATH hardware tokens. It retrieves all assigned and unassigned tokens, supports importing SHA-1 and SHA-256 tokens, and allows deletion of unassigned tokens. you require the following file to function it as expected: Import-HardwareOathTokens_EntraID_SHA-1 (NON-AssignedToUPN's.ps1, Import-HardwareOathTokens_EntraID_SHA256.(NON-AssignedToUPN.ps1, Get All users with otp tokens in Entra ID.ps1, DELETE All OATH Tokens In Entra ID.ps1. 
