@@ -2,7 +2,7 @@
 # Install-Module Microsoft.Graph -Scope CurrentUser
 
 Add-Type -AssemblyName System.Windows.Forms
-Connect-MgGraph -Scopes "Policy.ReadWrite.AuthenticationMethod", "Directory.Read.All", "UserAuthenticationMethod.ReadWrite.All"
+Connect-MgGraph -NoWelcome -Scopes "Policy.ReadWrite.AuthenticationMethod", "Directory.Read.All", "UserAuthenticationMethod.ReadWrite.All"
 
 # File selection dialog
 $dlg = New-Object System.Windows.Forms.OpenFileDialog
